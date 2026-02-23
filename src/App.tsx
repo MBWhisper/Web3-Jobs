@@ -1,0 +1,19 @@
+import { NavBar } from '@/components/NavBar';
+import { Footer } from '@/components/Footer';
+import { Hero } from '@/sections/Hero';
+import { JobListings } from '@/sections/JobListings';
+
+function App() {
+  return (
+    <div className="min-h-screen bg-bg-primary">
+      <NavBar />
+      <main>
+        <Hero />
+        <JobListings />
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+export default App;

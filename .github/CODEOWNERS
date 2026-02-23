@@ -1,0 +1,15 @@
+# Default code owners
+* @username
+
+# Documentation
+*.md @username
+
+# Configuration files
+*.json @username
+*.config.* @username
+
+# Source code
+src/ @username
+
+# GitHub workflows
+.github/workflows/* @username
