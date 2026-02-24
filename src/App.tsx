@@ -1,6 +1,7 @@
 import { NavBar } from '@/components/NavBar';
 import { Footer } from '@/components/Footer';
 import { Hero } from '@/sections/Hero';
+import { PartnersAndAgents } from '@/sections/PartnersAndAgents';
 import { JobListings } from '@/sections/JobListings';
 import { Monetization } from '@/sections/Monetization';
 
@@ -11,6 +12,7 @@ function App() {
       <main>
         <Hero />
         <Monetization />
+        <PartnersAndAgents />
         <JobListings />
       </main>
       <Footer />
