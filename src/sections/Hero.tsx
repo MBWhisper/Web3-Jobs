@@ -16,8 +16,18 @@ const companyLogos = [
 export function Hero() {
   const [email, setEmail] = useState('');
 
+  const handleSubscribe = () => {
+    if (!email) {
+      alert('Please enter your email first.');
+      return;
+    }
+
+    alert('Subscription request submitted ✅');
+    setEmail('');
+  };
+
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-16">
+    <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-16">
       {/* Background grid pattern */}
       <div className="absolute inset-0 grid-pattern opacity-50" />
       
@@ -56,7 +66,7 @@ export function Hero() {
               onChange={(e) => setEmail(e.target.value)}
               className="w-64 bg-black/50 border-gray-700 text-white placeholder:text-gray-600 focus:border-accent-pink"
             />
-            <Button className="bg-accent-pink hover:bg-accent-pink-dark text-white">
+            <Button className="bg-accent-pink hover:bg-accent-pink-dark text-white" onClick={handleSubscribe}>
               Subscribe
             </Button>
           </div>
