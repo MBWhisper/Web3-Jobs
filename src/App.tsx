@@ -1,3 +1,4 @@
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { NavBar } from '@/components/NavBar';
 import { Footer } from '@/components/Footer';
 import { Hero } from '@/sections/Hero';
@@ -16,6 +17,7 @@ function App() {
         <JobListings />
       </main>
       <Footer />
+      <SpeedInsights />
     </div>
   );
 }
