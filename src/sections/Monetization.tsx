@@ -8,8 +8,9 @@ export function Monetization() {
   const [company, setCompany] = useState('');
   const [email, setEmail] = useState('');
   const [jobTitle, setJobTitle] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handlePaidJobPost = (e: React.FormEvent) => {
+  const handlePaidJobPost = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!company || !email || !jobTitle) {
@@ -17,11 +18,29 @@ export function Monetization() {
       return;
     }
 
-    alert('Great! Next step: connect Stripe Checkout (test mode) to collect payment before publishing.');
-    setPostJobOpen(false);
-    setCompany('');
-    setEmail('');
-    setJobTitle('');
+    try {
+      setIsSubmitting(true);
+      const response = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ company, email, jobTitle }),
+      });
+
+      const payload = (await response.json()) as { url?: string; error?: string };
+
+      if (!response.ok || !payload.url) {
+        throw new Error(payload.error || 'Unable to start Stripe checkout session.');
+      }
+
+      window.location.href = payload.url;
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Unexpected error occurred.';
+      alert(`Payment setup error: ${message}`);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -115,7 +134,9 @@ export function Monetization() {
               <div className="text-sm text-gray-400">Charge preview: <span className="text-white font-medium">$99</span> one-time</div>
 
               <div className="flex gap-3 pt-2">
-                <Button type="submit" className="flex-1 bg-accent-pink hover:bg-accent-pink-dark">Continue to Payment</Button>
+                <Button type="submit" disabled={isSubmitting} className="flex-1 bg-accent-pink hover:bg-accent-pink-dark">
+                  {isSubmitting ? 'Redirecting...' : 'Continue to Payment'}
+                </Button>
                 <Button type="button" variant="outline" className="flex-1" onClick={() => setPostJobOpen(false)}>Cancel</Button>
               </div>
             </form>
