@@ -19,7 +19,7 @@ export default async function handler(req, res) {
 
   try {
     const stripe = new Stripe(stripeSecretKey);
-    const origin = req.headers.origin || 'https://web3-jobs-five.vercel.app';
+    const origin = req.headers.origin || 'https://web3jobs-sigma.vercel.app';
 
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
