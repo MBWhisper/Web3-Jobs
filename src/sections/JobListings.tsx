@@ -20,7 +20,6 @@ export function JobListings() {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [remoteOnly, setRemoteOnly] = useState(false);
 
-  // Fetch jobs from API
   useEffect(() => {
     const fetchJobs = async () => {
       try {
@@ -37,27 +36,20 @@ export function JobListings() {
         setIsLoading(false);
       }
     };
-
     fetchJobs();
   }, []);
 
   const filteredJobs = useMemo(() => {
     return jobs.filter((job) => {
-      // Search filter
-      const matchesSearch = 
+      const matchesSearch =
         searchQuery === '' ||
         job.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         job.company.toLowerCase().includes(searchQuery.toLowerCase()) ||
         (job.location?.toLowerCase().includes(searchQuery.toLowerCase()) ?? true);
-
-      // Tag filter
-      const matchesTags = 
+      const matchesTags =
         selectedTags.length === 0 ||
         selectedTags.some((tag) => job.tags?.includes(tag));
-
-      // Remote filter
       const matchesRemote = !remoteOnly || job.isRemote;
-
       return matchesSearch && matchesTags && matchesRemote;
     });
   }, [jobs, searchQuery, selectedTags, remoteOnly]);
@@ -73,21 +65,37 @@ export function JobListings() {
 
   const handleTagSelect = (tag: string) => {
     setSelectedTags((prev) =>
-      prev.includes(tag)
-        ? prev.filter((t) => t !== tag)
-        : [...prev, tag]
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
     );
   };
+
+  // ✅ هنا الإضافة المهمة - استخدام isLoading و error في JSX
+  if (isLoading) {
+    return (
+      <section id="job-listings" className="relative py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto text-center py-24">
+          <div className="text-gray-400 text-lg animate-pulse">Loading jobs...</div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section id="job-listings" className="relative py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto text-center py-24">
+          <div className="text-red-400 text-lg">{error}</div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="job-listings" className="relative py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        {/* Report Banner */}
         <div className="mb-8">
           <ReportBanner />
         </div>
-
-        {/* Search and Filters */}
         <div className="mb-8 space-y-6">
           <SearchBar
             value={searchQuery}
@@ -100,10 +108,7 @@ export function JobListings() {
             onTagSelect={handleTagSelect}
           />
         </div>
-
-        {/* Job Listings Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Job Cards List */}
           <ScrollArea className="h-[800px] scrollbar-custom pr-4">
             <div className="space-y-4">
               {filteredJobs.map((job, index) => (
@@ -125,7 +130,6 @@ export function JobListings() {
                   />
                 </div>
               ))}
-              
               {filteredJobs.length === 0 && (
                 <div className="text-center py-12 text-gray-500 animate-fade-in">
                   No jobs found matching your criteria.
@@ -133,14 +137,10 @@ export function JobListings() {
               )}
             </div>
           </ScrollArea>
-
-          {/* Job Detail Panel */}
           <div className="hidden lg:block h-[800px] sticky top-24">
-            <JobDetail key={selectedJob.id} job={selectedJob} />
+            <JobDetail key={selectedJob?.id} job={selectedJob} />
           </div>
         </div>
-
-        {/* Mobile Job Detail Modal */}
         {mobileSelectedJob && (
           <div
             className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm lg:hidden animate-fade-in"
