@@ -1,20 +1,45 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { JobCard } from '@/components/JobCard';
 import { JobDetail } from '@/components/JobDetail';
 import { SearchBar } from '@/components/SearchBar';
 import { TagCloud } from '@/components/TagCloud';
 import { ReportBanner } from '@/components/ReportBanner';
-import { jobs } from '@/lib/data';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { jobsApi } from '@/lib/api';
+import type { Job } from '@/types';
 
 export function JobListings() {
   const isMobile = useIsMobile();
-  const [selectedJobId, setSelectedJobId] = useState<string>(jobs[0].id);
+  const [jobs, setJobs] = useState<Job[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [selectedJobId, setSelectedJobId] = useState<string | null>(null);
   const [mobileSelectedJobId, setMobileSelectedJobId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [remoteOnly, setRemoteOnly] = useState(false);
+
+  // Fetch jobs from API
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
+        const data = await jobsApi.getAll();
+        setJobs(data);
+        if (data.length > 0) {
+          setSelectedJobId(String(data[0].id));
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to load jobs');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchJobs();
+  }, []);
 
   const filteredJobs = useMemo(() => {
     return jobs.filter((job) => {
@@ -23,28 +48,28 @@ export function JobListings() {
         searchQuery === '' ||
         job.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         job.company.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        job.location.toLowerCase().includes(searchQuery.toLowerCase());
+        (job.location?.toLowerCase().includes(searchQuery.toLowerCase()) ?? true);
 
       // Tag filter
       const matchesTags = 
         selectedTags.length === 0 ||
-        selectedTags.some((tag) => job.tags.includes(tag));
+        selectedTags.some((tag) => job.tags?.includes(tag));
 
       // Remote filter
       const matchesRemote = !remoteOnly || job.isRemote;
 
       return matchesSearch && matchesTags && matchesRemote;
     });
-  }, [searchQuery, selectedTags, remoteOnly]);
+  }, [jobs, searchQuery, selectedTags, remoteOnly]);
 
   const selectedJob = useMemo(() => {
-    return jobs.find((job) => job.id === selectedJobId) || jobs[0];
-  }, [selectedJobId]);
+    return jobs.find((job) => String(job.id) === selectedJobId) || jobs[0] || null;
+  }, [jobs, selectedJobId]);
 
   const mobileSelectedJob = useMemo(() => {
     if (!mobileSelectedJobId) return null;
-    return jobs.find((job) => job.id === mobileSelectedJobId) || null;
-  }, [mobileSelectedJobId]);
+    return jobs.find((job) => String(job.id) === mobileSelectedJobId) || null;
+  }, [jobs, mobileSelectedJobId]);
 
   const handleTagSelect = (tag: string) => {
     setSelectedTags((prev) =>
