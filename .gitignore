@@ -41,3 +41,4 @@ build
 .env*.local
 
 /generated/prisma
+"dist/" 
