@@ -23,7 +23,7 @@ export const skillTags = [
 
 export const jobs: Job[] = [
   {
-    id: '1',
+    id: 1,
     title: 'Senior Blockchain Developer',
     company: 'Lemon.io',
     companyLogo: 'L',
@@ -47,7 +47,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '2',
+    id: 2,
     title: 'Web3 Solidity Bootcamp - Job Guaranteed',
     company: 'Metana',
     companyLogo: 'M',
@@ -68,7 +68,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '3',
+    id: 3,
     title: 'Product Security Engineer',
     company: 'Hashgraph',
     companyLogo: 'H',
@@ -88,7 +88,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '4',
+    id: 4,
     title: 'Senior Software Engineer - Trading Infrastructure Team',
     company: 'Gravity Team',
     companyLogo: 'G',
@@ -108,7 +108,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '5',
+    id: 5,
     title: 'VP Engineering',
     company: 'Genius',
     companyLogo: 'G',
@@ -130,7 +130,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '6',
+    id: 6,
     title: 'Senior Project Manager',
     company: 'Yield.xyz',
     companyLogo: 'Y',
@@ -150,7 +150,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '7',
+    id: 7,
     title: 'Business Development Lead (US)',
     company: 'Yield.xyz',
     companyLogo: 'Y',
@@ -170,7 +170,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '8',
+    id: 8,
     title: 'ZIGChain Blockchain Engineer',
     company: 'ZIGChain',
     companyLogo: 'Z',
@@ -192,7 +192,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '9',
+    id: 9,
     title: 'Backend Engineer',
     company: 'Blockwing',
     companyLogo: 'B',
@@ -214,7 +214,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '10',
+    id: 10,
     title: 'Front End Engineer',
     company: 'Blockwing',
     companyLogo: 'B',
@@ -237,7 +237,7 @@ export const jobs: Job[] = [
   },
   // Additional real jobs from popular Web3 companies
   {
-    id: '11',
+    id: 11,
     title: 'Senior Solidity Developer',
     company: 'Ethereum Foundation',
     companyLogo: 'E',
@@ -260,7 +260,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '12',
+    id: 12,
     title: 'DeFi Protocol Developer',
     company: 'Uniswap Labs',
     companyLogo: 'U',
@@ -282,7 +282,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '13',
+    id: 13,
     title: 'Rust Engineer - Core Protocol',
     company: 'Solana Foundation',
     companyLogo: 'S',
@@ -305,7 +305,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '14',
+    id: 14,
     title: 'Smart Contract Auditor',
     company: 'Trail of Bits',
     companyLogo: 'T',
@@ -327,7 +327,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '15',
+    id: 15,
     title: 'Community Manager - Spanish',
     company: 'Polygon',
     companyLogo: 'P',
@@ -349,7 +349,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '16',
+    id: 16,
     title: 'Full Stack Developer - Web3',
     company: 'OpenSea',
     companyLogo: 'O',
@@ -371,7 +371,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '17',
+    id: 17,
     title: 'DevOps Engineer - Blockchain',
     company: 'Chainlink',
     companyLogo: 'C',
@@ -393,7 +393,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '18',
+    id: 18,
     title: 'Technical Writer - Developer Docs',
     company: 'Aave',
     companyLogo: 'A',
@@ -415,7 +415,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '19',
+    id: 19,
     title: 'Product Manager - DeFi',
     company: 'MakerDAO',
     companyLogo: 'M',
@@ -437,7 +437,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '20',
+    id: 20,
     title: 'Blockchain Data Analyst',
     company: 'Nansen',
     companyLogo: 'N',
@@ -459,7 +459,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '21',
+    id: 21,
     title: 'UX/UI Designer - Web3',
     company: 'MetaMask',
     companyLogo: 'M',
@@ -481,7 +481,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '22',
+    id: 22,
     title: 'Go Developer - Blockchain',
     company: 'Cosmos',
     companyLogo: 'C',
@@ -503,7 +503,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '23',
+    id: 23,
     title: 'Sales Director - Enterprise',
     company: 'Alchemy',
     companyLogo: 'A',
@@ -525,7 +525,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '24',
+    id: 24,
     title: 'Junior Solidity Developer',
     company: 'DeFi Saver',
     companyLogo: 'D',
@@ -547,7 +547,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '25',
+    id: 25,
     title: 'Head of Developer Relations',
     company: 'Polygon',
     companyLogo: 'P',
@@ -570,7 +570,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '26',
+    id: 26,
     title: 'iOS Developer - Web3 Wallet',
     company: 'Rainbow',
     companyLogo: 'R',
@@ -592,7 +592,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '27',
+    id: 27,
     title: 'Android Developer - Web3',
     company: 'Trust Wallet',
     companyLogo: 'T',
@@ -614,7 +614,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '28',
+    id: 28,
     title: 'Security Engineer - Smart Contracts',
     company: 'Certik',
     companyLogo: 'C',
@@ -637,7 +637,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '29',
+    id: 29,
     title: 'Economist - Tokenomics',
     company: 'Tokenize',
     companyLogo: 'T',
@@ -659,7 +659,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '30',
+    id: 30,
     title: 'Backend Engineer - Data Pipeline',
     company: 'The Graph',
     companyLogo: 'G',
@@ -681,7 +681,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '31',
+    id: 31,
     title: 'Frontend Developer - DeFi Dashboard',
     company: 'Zapper',
     companyLogo: 'Z',
@@ -703,7 +703,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '32',
+    id: 32,
     title: 'Technical Recruiter - Web3',
     company: 'Paradigm',
     companyLogo: 'P',
@@ -725,7 +725,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '33',
+    id: 33,
     title: 'Game Developer - NFT Gaming',
     company: 'Sky Mavis',
     companyLogo: 'S',
@@ -748,7 +748,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '34',
+    id: 34,
     title: 'Legal Counsel - Crypto',
     company: 'Coinbase',
     companyLogo: 'C',
@@ -770,7 +770,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '35',
+    id: 35,
     title: 'Data Scientist - On-Chain Analytics',
     company: 'Dune',
     companyLogo: 'D',
@@ -792,7 +792,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '36',
+    id: 36,
     title: 'Solutions Architect',
     company: 'Infura',
     companyLogo: 'I',
@@ -814,7 +814,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '37',
+    id: 37,
     title: 'Marketing Manager - Growth',
     company: 'Blur',
     companyLogo: 'B',
@@ -836,7 +836,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '38',
+    id: 38,
     title: 'Zero Knowledge Cryptographer',
     company: ' Aztec',
     companyLogo: 'A',
@@ -859,7 +859,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '39',
+    id: 39,
     title: 'Operations Manager',
     company: 'Gitcoin',
     companyLogo: 'G',
@@ -881,7 +881,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '40',
+    id: 40,
     title: 'Backend Developer - API',
     company: 'QuickNode',
     companyLogo: 'Q',
@@ -903,7 +903,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '41',
+    id: 41,
     title: 'DAO Governance Specialist',
     company: 'BitDAO',
     companyLogo: 'B',
@@ -925,7 +925,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '42',
+    id: 42,
     title: 'QA Engineer - Smart Contracts',
     company: 'OpenZeppelin',
     companyLogo: 'O',
@@ -947,7 +947,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '43',
+    id: 43,
     title: 'Partnerships Manager',
     company: 'ENS',
     companyLogo: 'E',
@@ -969,7 +969,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '44',
+    id: 44,
     title: 'Mobile Developer - React Native Web3',
     company: 'Rabby',
     companyLogo: 'R',
@@ -991,7 +991,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '45',
+    id: 45,
     title: 'Technical Account Manager',
     company: 'Alchemy',
     companyLogo: 'A',
@@ -1013,7 +1013,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '46',
+    id: 46,
     title: 'Research Scientist - Consensus',
     company: 'Ethereum Foundation',
     companyLogo: 'E',
@@ -1036,7 +1036,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '47',
+    id: 47,
     title: 'Social Media Manager - Crypto',
     company: 'Bankless',
     companyLogo: 'B',
@@ -1058,7 +1058,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '48',
+    id: 48,
     title: 'Systems Engineer - Node Infrastructure',
     company: 'Ankr',
     companyLogo: 'A',
@@ -1080,7 +1080,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '49',
+    id: 49,
     title: 'Product Designer - Design System',
     company: 'WalletConnect',
     companyLogo: 'W',
@@ -1102,7 +1102,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '50',
+    id: 50,
     title: 'Developer Advocate - Rust',
     company: 'Polkadot',
     companyLogo: 'P',
@@ -1124,7 +1124,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '51',
+    id: 51,
     title: 'Legal Operations - Crypto',
     company: 'Coinbase',
     companyLogo: 'C',
@@ -1146,7 +1146,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '52',
+    id: 52,
     title: 'Content Writer - Technical',
     company: 'Chainlink',
     companyLogo: 'C',
@@ -1168,7 +1168,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '53',
+    id: 53,
     title: 'Security Operations Engineer',
     company: 'Binance',
     companyLogo: 'B',
@@ -1191,7 +1191,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '54',
+    id: 54,
     title: 'Frontend Architect - Web3',
     company: 'Yearn',
     companyLogo: 'Y',
@@ -1213,7 +1213,7 @@ export const jobs: Job[] = [
     ]
   },
   {
-    id: '55',
+    id: 55,
     title: 'Customer Support Lead',
     company: 'Kraken',
     companyLogo: 'K',

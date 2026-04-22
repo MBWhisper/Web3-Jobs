@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ChevronDown, Menu, X, Sun, Moon, Search, Bell, User, Briefcase } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { navItems } from '@/lib/data';
+import { useAuth } from '@/hooks/useAuth';
 
 type AuthMode = 'login' | 'signup';
 
@@ -17,6 +19,8 @@ export function NavBar() {
   const [darkMode, setDarkMode] = useState(true);
   const [searchOpen, setSearchOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
+  const navigate = useNavigate();
+  const { signIn, signUp, user } = useAuth();
 
   // Sample notifications
   const notifications = [
@@ -26,6 +30,13 @@ export function NavBar() {
   ];
 
   const unreadCount = notifications.filter(n => n.unread).length;
+
+  useEffect(() => {
+    // If user is already logged in, close auth modal
+    if (user) {
+      setAuthOpen(false);
+    }
+  }, [user]);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -48,17 +59,45 @@ export function NavBar() {
     setMobileMenuOpen(false);
   };
 
-  const handleAuthSubmit = (e: React.FormEvent) => {
+  const handleAuthSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password) {
       alert('Please enter email and password.');
       return;
     }
 
-    alert(authMode === 'login' ? 'Login request sent successfully ✅' : 'Sign up request sent successfully ✅');
-    setEmail('');
-    setPassword('');
-    setAuthOpen(false);
+    try {
+      if (authMode === 'login') {
+        const { data, error } = await signIn(email, password);
+        
+        if (error) {
+          alert(`Login failed: ${error.message}`);
+          return;
+        }
+
+        if (data.user) {
+          // Redirect to dashboard after successful login
+          navigate('/dashboard');
+          setAuthOpen(false);
+        }
+      } else {
+        const { error } = await signUp(email, password);
+        
+        if (error) {
+          alert(`Sign up failed: ${error.message}`);
+          return;
+        }
+
+        alert('Account created successfully! Please check your email to verify your account.');
+        setAuthMode('login'); // Switch to login after successful signup
+      }
+      
+      setEmail('');
+      setPassword('');
+    } catch (err) {
+      console.error('Authentication error:', err);
+      alert(`Authentication error: ${(err as Error).message}`);
+    }
   };
 
   return (
@@ -196,19 +235,30 @@ export function NavBar() {
               </Button>
 
               {/* Auth Buttons */}
-              <Button 
-                variant="ghost" 
-                className="text-gray-300 hover:text-white hover:bg-white/10" 
-                onClick={() => openAuth('login')}
-              >
-                Login
-              </Button>
-              <Button 
-                className="bg-accent-pink hover:bg-accent-pink-dark text-white px-6 shadow-lg shadow-accent-pink/25" 
-                onClick={() => openAuth('signup')}
-              >
-                Sign Up
-              </Button>
+              {user ? (
+                <Button 
+                  className="bg-accent-pink hover:bg-accent-pink-dark text-white px-6 shadow-lg shadow-accent-pink/25" 
+                  onClick={() => navigate('/dashboard')}
+                >
+                  Dashboard
+                </Button>
+              ) : (
+                <>
+                  <Button 
+                    variant="ghost" 
+                    className="text-gray-300 hover:text-white hover:bg-white/10" 
+                    onClick={() => openAuth('login')}
+                  >
+                    Login
+                  </Button>
+                  <Button 
+                    className="bg-accent-pink hover:bg-accent-pink-dark text-white px-6 shadow-lg shadow-accent-pink/25" 
+                    onClick={() => openAuth('signup')}
+                  >
+                    Sign Up
+                  </Button>
+                </>
+              )}
             </div>
 
             {/* Mobile Menu Button */}
@@ -290,20 +340,40 @@ export function NavBar() {
                 </Button>
                 
                 <div className="grid grid-cols-2 gap-2">
-                  <Button 
-                    variant="ghost" 
-                    className="text-gray-300 hover:text-white" 
-                    onClick={() => openAuth('login')}
-                  >
-                    <User className="w-4 h-4 mr-2" />
-                    Login
-                  </Button>
-                  <Button 
-                    className="bg-accent-pink hover:bg-accent-pink-dark text-white" 
-                    onClick={() => openAuth('signup')}
-                  >
-                    Sign Up
-                  </Button>
+                  {user ? (
+                    <Button 
+                      className="col-span-2 bg-accent-pink hover:bg-accent-pink-dark text-white" 
+                      onClick={() => {
+                        navigate('/dashboard');
+                        setMobileMenuOpen(false);
+                      }}
+                    >
+                      Dashboard
+                    </Button>
+                  ) : (
+                    <>
+                      <Button 
+                        variant="ghost" 
+                        className="text-gray-300 hover:text-white" 
+                        onClick={() => {
+                          openAuth('login');
+                          setMobileMenuOpen(false);
+                        }}
+                      >
+                        <User className="w-4 h-4 mr-2" />
+                        Login
+                      </Button>
+                      <Button 
+                        className="bg-accent-pink hover:bg-accent-pink-dark text-white" 
+                        onClick={() => {
+                          openAuth('signup');
+                          setMobileMenuOpen(false);
+                        }}
+                      >
+                        Sign Up
+                      </Button>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
