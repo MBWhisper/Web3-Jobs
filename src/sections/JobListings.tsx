@@ -14,8 +14,8 @@ export function JobListings() {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [selectedJobId, setSelectedJobId] = useState<string | null>(null);
-  const [mobileSelectedJobId, setMobileSelectedJobId] = useState<string | null>(null);
+  const [selectedJobId, setSelectedJobId] = useState<number | null>(null);
+  const [mobileSelectedJobId, setMobileSelectedJobId] = useState<number | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [remoteOnly, setRemoteOnly] = useState(false);
@@ -28,7 +28,7 @@ export function JobListings() {
         const data = await jobsApi.getAll();
         setJobs(data);
         if (data.length > 0) {
-          setSelectedJobId(String(data[0].id));
+          setSelectedJobId(data[0].id);
         }
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load jobs');
@@ -55,12 +55,12 @@ export function JobListings() {
   }, [jobs, searchQuery, selectedTags, remoteOnly]);
 
   const selectedJob = useMemo(() => {
-    return jobs.find((job) => String(job.id) === selectedJobId) || jobs[0] || null;
+    return jobs.find((job) => job.id === selectedJobId) || jobs[0] || null;
   }, [jobs, selectedJobId]);
 
   const mobileSelectedJob = useMemo(() => {
     if (!mobileSelectedJobId) return null;
-    return jobs.find((job) => String(job.id) === mobileSelectedJobId) || null;
+    return jobs.find((job) => job.id === mobileSelectedJobId) || null;
   }, [jobs, mobileSelectedJobId]);
 
   const handleTagSelect = (tag: string) => {

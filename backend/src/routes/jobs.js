@@ -73,12 +73,23 @@ router.post('/', async (req, res) => {
   try {
     const { title, company, description, ...rest } = req.body;
     
-    // Validation
+    // Validate required fields
     if (!title || !company || !description) {
       return res.status(400).json({ 
         success: false,
         error: 'Missing required fields',
         required: ['title', 'company', 'description']
+      });
+    }
+    
+    // Validate that rest properties are valid job fields
+    const validFields = ['location', 'type', 'category', 'salary', 'experience', 'deadline', 'remote', 'skills'];
+    const invalidFields = Object.keys(rest).filter(key => !validFields.includes(key));
+    if (invalidFields.length > 0) {
+      return res.status(400).json({ 
+        success: false,
+        error: 'Invalid job fields',
+        invalidFields: invalidFields
       });
     }
 

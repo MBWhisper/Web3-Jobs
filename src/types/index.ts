@@ -1,5 +1,5 @@
 export interface Job {
-  id: string;
+  id: number; // Changed from string to number to match backend
   title: string;
   company: string;
   companyLogo?: string;
