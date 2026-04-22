@@ -6,7 +6,10 @@ import { inspectAttr } from 'kimi-plugin-inspect-react'
 // https://vite.dev/config/
 export default defineConfig({
   base: process.env.VERCEL ? '/' : './',
-  plugins: [inspectAttr(), react()],
+  plugins: [
+    ...(process.env.NODE_ENV !== 'production' ? [inspectAttr()] : []),
+    react()
+  ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -17,10 +20,10 @@ export default defineConfig({
     minify: 'esbuild',
     rollupOptions: {
       output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          'router': ['react-router-dom'],
-          'supabase': ['@supabase/supabase-js'],
+        manualChunks(id) {
+          if (id.includes('node_modules/react-dom') || id.includes('node_modules/react/')) return 'react-vendor';
+          if (id.includes('node_modules/react-router')) return 'router';
+          if (id.includes('node_modules/@supabase')) return 'supabase';
         },
       },
     },

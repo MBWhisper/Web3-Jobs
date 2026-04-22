@@ -33,6 +33,7 @@ dist-ssr
 # Testing
 coverage
 .nyc_output
+test-results/
 
 # Build outputs
 build
@@ -41,4 +42,4 @@ build
 .env*.local
 
 /generated/prisma
-"dist/" 
+"dist/"
