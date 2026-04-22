@@ -13,7 +13,7 @@ import supabase from '@/lib/supabase';
 
 // Component to handle redirects after auth state changes
 function AuthRedirectHandler() {
-  const { user } = useAuth();
+  const { } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
