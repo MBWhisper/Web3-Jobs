@@ -69,7 +69,6 @@ export function JobListings() {
     );
   };
 
-  // ✅ هنا الإضافة المهمة - استخدام isLoading و error في JSX
   if (isLoading) {
     return (
       <section id="job-listings" className="relative py-12 px-4 sm:px-6 lg:px-8">
@@ -84,7 +83,7 @@ export function JobListings() {
     return (
       <section id="job-listings" className="relative py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center py-24">
-          <div className="text-red-400 text-lg">{error}</div>
+          <div className="text-accent-pink text-lg">{error}</div>
         </div>
       </section>
     );
