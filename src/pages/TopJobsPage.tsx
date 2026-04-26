@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Flame, TrendingUp, Star, Clock, MapPin, DollarSign, Globe, ExternalLink, Filter } from 'lucide-react';
+import { Flame, TrendingUp, Star, Clock, MapPin, Globe, ExternalLink } from 'lucide-react';
 
 const topJobs = [
   { id: 1, title: 'Senior ZK Engineer', company: 'StarkWare', logo: 'SW', location: 'Remote', salary: '$200k–$280k', tags: ['ZK', 'Cairo', 'Rust'], isRemote: true, category: 'best-paid', trending: true, postedAt: '1 day ago', views: 4200 },

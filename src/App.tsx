@@ -27,7 +27,7 @@ const PageLoader = () => (
 );
 
 function AuthRedirectHandler() {
-  const { } = useAuth();
+  useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 

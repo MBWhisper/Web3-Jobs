@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { GraduationCap, MapPin, Clock, DollarSign, Globe, Flame, Search, Filter } from 'lucide-react';
+import { GraduationCap, MapPin, Clock, DollarSign, Globe, Flame, Search } from 'lucide-react';
 
 const internships = [
   { id: 1, title: 'Smart Contract Intern', company: 'Ethereum Foundation', logo: 'EF', location: 'Remote', duration: '3 months', stipend: '$3,000/mo', tags: ['Solidity', 'EVM', 'Testing'], isRemote: true, isFeatured: true, cardType: 'purple', postedAt: '2 days ago' },

@@ -5,8 +5,8 @@ import { JobCard } from '@/components/JobCard';
 import type { Job } from '@/types';
 import {
   Briefcase, Bell, Star, TrendingUp, Zap, Globe, ChevronRight,
-  BookmarkCheck, Clock, MapPin, DollarSign, User, LogOut,
-  BarChart3, Target, Flame, Award, Search, Plus, ExternalLink
+  BookmarkCheck, User, LogOut,
+  BarChart3, Target, Award, Search, Plus
 } from 'lucide-react';
 
 // ─── Stat Card ────────────────────────────────────────────────────────────────
@@ -56,7 +56,7 @@ export const Dashboard = () => {
       try {
         const { data } = await supabase.from('jobs').select('*').limit(6);
         setJobs(data || []);
-      } catch (_) {
+      } catch {
         setJobs([]);
       } finally {
         setLoading(false);

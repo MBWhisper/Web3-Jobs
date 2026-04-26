@@ -304,5 +304,3 @@ export function NavBar() {
     </>
   );
 }
-
-const jobs = [{ id: '1' }, { id: '2' }];

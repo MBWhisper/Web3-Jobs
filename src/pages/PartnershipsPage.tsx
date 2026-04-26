@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Handshake, Globe, Mail, Building2, Users, TrendingUp, CheckCircle2, Send } from 'lucide-react';
+import { Handshake, Globe, Building2, Users, TrendingUp, CheckCircle2, Send } from 'lucide-react';
 
 const partners = [
   { name: 'Ethereum Foundation', type: 'Protocol', logo: 'EF', desc: 'Core protocol research and developer grants', color: 'from-purple-900/40 to-purple-800/20 border-purple-500/20' },

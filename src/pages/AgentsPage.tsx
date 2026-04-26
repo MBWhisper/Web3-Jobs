@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Bot, Zap, Search, BrainCircuit, Shield, TrendingUp, Play, CheckCircle2, Sparkles } from 'lucide-react';
+import { Bot, Zap, Search, BrainCircuit, Shield, TrendingUp, Play, Sparkles } from 'lucide-react';
 
 const agents = [
   {

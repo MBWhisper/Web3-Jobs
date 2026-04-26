@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TrendingUp, DollarSign, MapPin, Briefcase, ChevronDown } from 'lucide-react';
+import { TrendingUp, DollarSign, MapPin, Briefcase } from 'lucide-react';
 
 const salaryData = [
   { role: 'Smart Contract Developer', min: 80000, max: 180000, avg: 130000, demand: 'Very High', trend: '+24%', color: 'text-green-400' },
