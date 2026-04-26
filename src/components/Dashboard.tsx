@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import supabase from '@/lib/supabase';
 import { JobCard } from '@/components/JobCard';
+import { JobDetail } from '@/components/JobDetail';
+import { MOCK_JOBS } from '@/lib/mockJobs';
 import type { Job } from '@/types';
 import {
   Briefcase, Bell, Star, TrendingUp, Zap, Globe, ChevronRight,
@@ -50,14 +52,25 @@ export const Dashboard = () => {
   const [loading, setLoading]     = useState(true);
   const [activeTab, setActiveTab] = useState<'saved' | 'recommended' | 'applied'>('saved');
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedJob, setSelectedJob] = useState<Job | null>(null);
+  const detailsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchJobs = async () => {
       try {
         const { data } = await supabase.from('jobs').select('*').limit(6);
-        setJobs(data || []);
+        if (data && data.length > 0) {
+          setJobs(data);
+          setSelectedJob(data[0]);
+        } else {
+          // Use mock data if API doesn't return data
+          setJobs(MOCK_JOBS);
+          setSelectedJob(MOCK_JOBS[0]);
+        }
       } catch {
-        setJobs([]);
+        // Fallback to mock data on error
+        setJobs(MOCK_JOBS);
+        setSelectedJob(MOCK_JOBS[0]);
       } finally {
         setLoading(false);
       }
@@ -146,7 +159,7 @@ export const Dashboard = () => {
         </div>
       </div>
 
-      {/* ── Main Content ────────────────────────────────── */}
+      {/* ── Main Content ─────���──────────────────────────── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
@@ -207,8 +220,14 @@ export const Dashboard = () => {
                   <JobCard 
                     key={job.id} 
                     job={job} 
-                    isSelected={false}
-                    onClick={() => {}}
+                    isSelected={selectedJob?.id === job.id}
+                    onClick={() => {
+                      setSelectedJob(job);
+                      // Scroll to details on mobile
+                      if (detailsRef.current && window.innerWidth < 1024) {
+                        detailsRef.current.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
                   />
                 ))}
               </div>
@@ -228,8 +247,32 @@ export const Dashboard = () => {
             )}
           </div>
 
-          {/* ── Right Column — Sidebar ───────────────────── */}
-          <div className="space-y-5">
+          {/* ── Right Column — Job Details / Sidebar ───────────────────── */}
+          <div ref={detailsRef} className="space-y-5">
+            
+            {/* Job Details Panel — Visible on desktop, modal-like on mobile */}
+            {selectedJob ? (
+              <div className="lg:block hidden">
+                <JobDetail job={selectedJob} onJobChange={setSelectedJob} allJobs={filtered.length > 0 ? filtered : jobs} />
+              </div>
+            ) : null}
+
+            {/* Mobile modal overlay for job details */}
+            {selectedJob && window.innerWidth < 1024 && (
+              <div className="fixed inset-0 z-50 lg:hidden bg-black/80 flex flex-col">
+                <div className="flex-1 overflow-y-auto">
+                  <div className="p-4 pb-20">
+                    <button
+                      onClick={() => setSelectedJob(null)}
+                      className="mb-4 text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2"
+                    >
+                      ← Back
+                    </button>
+                    <JobDetail job={selectedJob} onJobChange={setSelectedJob} allJobs={filtered.length > 0 ? filtered : jobs} />
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Profile Completion */}
             <div className="rounded-2xl p-5 bg-gradient-to-br from-purple-900/40 to-purple-800/20 border border-purple-500/20">
