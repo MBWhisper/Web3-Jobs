@@ -1,13 +1,13 @@
 import type { Job, NavItem, FooterColumn } from '@/types';
 
 export const navItems: NavItem[] = [
-  { label: 'Web3 Jobs', href: '#job-listings', hasDropdown: true },
-  { label: 'Partnerships', href: '#partners-agents', hasDropdown: false },
-  { label: 'Agents', href: '#partners-agents', hasDropdown: false },
-  { label: 'Salaries', href: '#job-listings', hasDropdown: true },
-  { label: 'Internships', href: '#job-listings', hasDropdown: true },
-  { label: 'Learn Web3', href: '#hero', hasDropdown: true },
-  { label: 'TOP Web3 Jobs', href: '#job-listings', hasDropdown: true },
+  { label: 'Web3 Jobs', href: '/', hasDropdown: false },
+  { label: 'Partnerships', href: '/partnerships', hasDropdown: false },
+  { label: 'Agents', href: '/agents', hasDropdown: false },
+  { label: 'Salaries', href: '/salaries', hasDropdown: false },
+  { label: 'Internships', href: '/internships', hasDropdown: false },
+  { label: 'Learn Web3', href: '/learn', hasDropdown: false },
+  { label: 'TOP Web3 Jobs', href: '/top-jobs', hasDropdown: false },
 ];
 
 export const skillTags = [

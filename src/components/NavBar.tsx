@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronDown, Menu, X, Sun, Moon, Search, Bell, User, Briefcase } from 'lucide-react';
+import { Menu, X, Sun, Moon, Search, Bell, User, Briefcase } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -98,20 +98,18 @@ export function NavBar() {
             </a>
 
             {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center gap-1" role="navigation" aria-label="Main navigation">
-              {navItems.map((item, index) => (
-                <a
-                  key={index}
-                  href={item.href}
-                  className="flex items-center gap-1 px-4 py-2 text-sm text-gray-300 hover:text-accent-pink transition-all duration-200 relative group"
-                  aria-label={item.label}
+            <nav className="hidden lg:flex items-center gap-1">
+              {navItems.map(item => (
+                <button
+                  key={item.label}
+                  onClick={() => navigate(item.href)}
+                  className="px-4 py-2 text-gray-300 hover:text-white transition-colors text-sm font-medium"
                 >
                   {item.label}
-                  {item.hasDropdown && <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />}
-                  <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-accent-pink scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-                </a>
+                </button>
               ))}
             </nav>
+
 
             {/* Desktop Actions */}
             <div className="hidden lg:flex items-center gap-2">
@@ -184,11 +182,10 @@ export function NavBar() {
                 <Input type="search" placeholder="Search jobs..." className="pl-10 bg-black/40 border-gray-700 text-white placeholder:text-gray-500" />
               </div>
               <nav className="flex flex-col space-y-1">
-                {navItems.map((item, index) => (
-                  <a key={index} href={item.href} onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between px-4 py-3 text-gray-300 hover:text-accent-pink hover:bg-white/5 rounded-lg transition-colors">
+                {navItems.map((item) => (
+                  <button key={item.label} onClick={() => { navigate(item.href); setMobileMenuOpen(false); }} className="flex items-center justify-between px-4 py-3 text-gray-300 hover:text-accent-pink hover:bg-white/5 rounded-lg transition-colors text-left">
                     {item.label}
-                    {item.hasDropdown && <ChevronDown className="w-4 h-4" />}
-                  </a>
+                  </button>
                 ))}
               </nav>
               <div className="pt-4 border-t border-gray-800 space-y-2">
