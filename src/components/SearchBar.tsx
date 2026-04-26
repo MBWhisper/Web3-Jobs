@@ -14,7 +14,7 @@ export function SearchBar({ value, onChange, remoteOnly, onRemoteChange }: Searc
   const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <div className={`flex flex-col sm:flex-row items-center gap-4 animate-fade-in-up`}>
+    <div className={`flex flex-col sm:flex-row items-center gap-4 animate-fade-in`}>
       {/* Search Input */}
       <div className={`relative flex-1 w-full transition-all duration-300 ${
         isFocused ? 'ring-2 ring-accent-pink rounded-lg' : ''

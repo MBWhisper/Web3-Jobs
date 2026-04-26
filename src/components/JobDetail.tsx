@@ -10,12 +10,12 @@ interface JobDetailProps {
 
 export function JobDetail({ job }: JobDetailProps) {
   return (
-    <div className="h-full flex flex-col bg-bg-secondary/50 border border-pink-500/20 rounded-lg overflow-hidden animate-fade-in">
+    <div className="h-full flex flex-col bg-bg-secondary/50 border border-accent-pink/20 rounded-lg overflow-hidden animate-fade-in">
       {/* Header */}
-      <div className="p-6 border-b border-pink-500/20">
+      <div className="p-6 border-b border-accent-pink/20">
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-lg bg-black/30 flex items-center justify-center text-xl font-bold text-white border border-pink-500/30">
+            <div className="w-14 h-14 rounded-lg bg-black/30 flex items-center justify-center text-xl font-bold text-white border border-accent-pink/30">
               {job.companyLogo}
             </div>
             <div>
@@ -51,7 +51,7 @@ export function JobDetail({ job }: JobDetailProps) {
             <Badge
               key={index}
               variant="outline"
-              className="bg-pink-500/10 text-pink-400 border-pink-500/30 hover:bg-pink-500/20"
+              className="bg-accent-pink/10 text-accent-pink border-accent-pink/30 hover:bg-accent-pink/20"
             >
               {tag}
             </Badge>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import supabase from '@/lib/supabase';
+import { JobCard } from '@/components/JobCard';
 import type { Job } from '@/types';
 import {
   Briefcase, Bell, Star, TrendingUp, Zap, Globe, ChevronRight,
@@ -26,69 +27,6 @@ const StatCard = ({ icon: Icon, label, value, sub, color }: {
     </div>
   </div>
 );
-
-// ─── Job Card ─────────────────────────────────────────────────────────────────
-const JobCard = ({ job }: { job: Job }) => {
-  const typeColors: Record<string, string> = {
-    purple: 'from-purple-900/40 to-purple-800/20 border-purple-500/20',
-    teal:   'from-teal-900/40 to-teal-800/20 border-teal-500/20',
-    yellow: 'from-yellow-900/40 to-yellow-800/20 border-yellow-500/20',
-    default:'from-gray-900/60 to-gray-800/30 border-white/5',
-  };
-  const color = typeColors[job.cardType || 'default'];
-  const tagColors = ['bg-accent-pink/15 text-accent-pink', 'bg-cyan-500/15 text-cyan-400', 'bg-purple-500/15 text-purple-400', 'bg-yellow-500/15 text-yellow-400'];
-
-  return (
-    <div className={`relative group rounded-2xl p-5 bg-gradient-to-br border transition-all duration-300 hover:scale-[1.01] hover:shadow-xl hover:shadow-black/40 cursor-pointer ${color}`}>
-      {job.isFeatured && (
-        <span className="absolute top-3 right-3 flex items-center gap-1 px-2 py-0.5 rounded-full bg-accent-pink/20 border border-accent-pink/30 text-accent-pink text-xs font-medium">
-          <Flame className="w-3 h-3" /> Featured
-        </span>
-      )}
-      <div className="flex items-start gap-4">
-        {/* Logo */}
-        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 flex items-center justify-center text-xl font-bold text-white shrink-0">
-          {job.companyLogo
-            ? <img src={job.companyLogo} alt={job.company} className="w-full h-full object-contain rounded-xl" />
-            : job.company?.charAt(0)}
-        </div>
-        <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-white text-sm truncate group-hover:text-accent-pink transition-colors">{job.title}</h3>
-          <p className="text-xs text-gray-400 mt-0.5">{job.company}</p>
-          <div className="flex flex-wrap items-center gap-3 mt-2 text-xs text-gray-500">
-            {job.location && (
-              <span className="flex items-center gap-1"><MapPin className="w-3 h-3" />{job.location}</span>
-            )}
-            {job.salary && (
-              <span className="flex items-center gap-1"><DollarSign className="w-3 h-3" />{job.salary}</span>
-            )}
-            {job.isRemote && (
-              <span className="flex items-center gap-1 text-cyan-400"><Globe className="w-3 h-3" />Remote</span>
-            )}
-          </div>
-        </div>
-      </div>
-      {/* Tags */}
-      {job.tags?.length > 0 && (
-        <div className="flex flex-wrap gap-1.5 mt-3">
-          {job.tags.slice(0, 4).map((tag, i) => (
-            <span key={i} className={`px-2 py-0.5 rounded-full text-xs font-medium ${tagColors[i % tagColors.length]}`}>
-              {tag}
-            </span>
-          ))}
-        </div>
-      )}
-      <div className="flex items-center justify-between mt-3 pt-3 border-t border-white/5">
-        <span className="flex items-center gap-1 text-xs text-gray-500">
-          <Clock className="w-3 h-3" />{job.postedAt}
-        </span>
-        <span className="flex items-center gap-1 text-xs text-accent-pink opacity-0 group-hover:opacity-100 transition-opacity">
-          View Job <ExternalLink className="w-3 h-3" />
-        </span>
-      </div>
-    </div>
-  );
-};
 
 // ─── Activity Item ─────────────────────────────────────────────────────────────
 const ActivityItem = ({ icon: Icon, text, time, color }: {
@@ -265,7 +203,14 @@ export const Dashboard = () => {
               </div>
             ) : filtered.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {filtered.map(job => <JobCard key={job.id} job={job} />)}
+                {filtered.map(job => (
+                  <JobCard 
+                    key={job.id} 
+                    job={job} 
+                    isSelected={false}
+                    onClick={() => {}}
+                  />
+                ))}
               </div>
             ) : (
               <div className="rounded-2xl border border-dashed border-white/10 p-14 flex flex-col items-center text-center">

@@ -59,8 +59,9 @@ export function JobCard({ job, isSelected, onClick }: JobCardProps) {
           ? 'ring-2 ring-accent-pink shadow-glow-pink' 
           : 'hover:shadow-lg hover:-translate-y-1 hover:shadow-accent-pink/10'
       }`}
-      role="article"
-      aria-label={`${job.title} at ${job.company}`}
+      role="button"
+      aria-label={`${job.title} at ${job.company}${job.isRemote ? ', Remote' : ''}`}
+      aria-pressed={isSelected}
       tabIndex={0}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {

@@ -3,9 +3,9 @@ import { Button } from '@/components/ui/button';
 
 export function ReportBanner() {
   return (
-    <div className="relative overflow-hidden rounded-lg border border-pink-500/30 animate-fade-in-up">
+    <div className="relative overflow-hidden rounded-lg border border-accent-pink/30 animate-fade-in-up">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-r from-pink-900/60 via-purple-900/60 to-pink-900/60" />
+      <div className="absolute inset-0 bg-gradient-to-r from-accent-pink/20 via-purple-900/40 to-accent-pink/20" />
       
       {/* Glow effect */}
       <div className="absolute inset-0 bg-gradient-to-r from-accent-pink/10 via-transparent to-accent-pink/10" />

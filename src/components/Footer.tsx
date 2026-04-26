@@ -2,7 +2,7 @@ import { footerColumns } from '@/lib/data';
 
 export function Footer() {
   return (
-    <footer className="border-t border-gray-800 bg-bg-primary">
+    <footer className="border-t border-white/10 bg-bg-primary">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* FAQ Links */}
         <div className="mb-8 space-y-2">
@@ -21,7 +21,7 @@ export function Footer() {
         </div>
 
         {/* Footer Columns */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-8 py-8 border-t border-gray-800">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-8 py-8 border-t border-white/10">
           {footerColumns.map((column, colIndex) => (
             <div key={colIndex}>
               <h4 className="text-white font-semibold mb-4">{column.title}</h4>
@@ -46,7 +46,7 @@ export function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="pt-8 border-t border-gray-800 text-center">
+        <div className="pt-8 border-t border-white/10 text-center">
           <p className="text-gray-500 text-sm">
             © wagmi 2025 <span className="text-accent-pink">Web3 Jobs</span>
           </p>
