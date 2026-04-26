@@ -1,141 +1,75 @@
-import { Check } from 'lucide-react';
+const BASIC_URL    = 'https://web3work.lemonsqueezy.com/checkout/buy/88d71395-1252-4db7-baf3-0d67374ce799';
+const FEATURED_URL = 'https://web3work.lemonsqueezy.com/checkout/buy/3363ea30-9d08-4201-b8f6-5bab78b286b5';
+const BUNDLE_URL   = 'https://web3work.lemonsqueezy.com/checkout/buy/dda8f3b3-b221-4424-879d-ee51608ce8ca';
 
-// Placeholder checkout URLs - will be replaced with actual LemonSqueezy links
-const LEMON_BASIC_URL = 'LEMON_BASIC_URL';
-const LEMON_FEATURED_URL = 'LEMON_FEATURED_URL';
-const LEMON_BUNDLE_URL = 'LEMON_BUNDLE_URL';
+const plans = [
+  {
+    key: 'basic',
+    name: 'Basic Listing',
+    price: '$49',
+    duration: '30 days',
+    features: ['1 job post', 'Standard visibility', 'Apply button', '30-day listing'],
+    popular: false,
+    url: BASIC_URL,
+  },
+  {
+    key: 'featured',
+    name: '⭐ Featured Listing',
+    price: '$99',
+    duration: '30 days',
+    features: ['1 featured job post', 'Top of listings', 'Highlighted badge', '2x more views'],
+    popular: true,
+    url: FEATURED_URL,
+  },
+  {
+    key: 'bundle',
+    name: 'Bundle 3 Jobs',
+    price: '$199',
+    duration: '90 days',
+    features: ['3 job posts', 'Mix basic + featured', 'Priority support', '90-day listing'],
+    popular: false,
+    url: BUNDLE_URL,
+  },
+];
 
 export function PostJobButton() {
-  const handleCheckout = (url: string) => {
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
-
-  const plans = [
-    {
-      name: 'Basic Listing',
-      price: 49,
-      duration: '30 days',
-      url: LEMON_BASIC_URL,
-      features: [
-        'Single job posting',
-        '30-day visibility',
-        'Basic analytics',
-        'Email support',
-      ],
-      highlighted: false,
-    },
-    {
-      name: 'Featured Listing',
-      price: 99,
-      duration: '30 days',
-      url: LEMON_FEATURED_URL,
-      features: [
-        'Featured badge on platform',
-        '30-day visibility',
-        'Advanced analytics',
-        'Priority support',
-        'Email notifications to candidates',
-      ],
-      highlighted: true,
-    },
-    {
-      name: 'Bundle 3 Jobs',
-      price: 199,
-      duration: '90 days',
-      url: LEMON_BUNDLE_URL,
-      features: [
-        'Post 3 jobs',
-        '90-day visibility',
-        'Advanced analytics',
-        'Priority support',
-        'Featured option on 1 job',
-        'Dedicated account manager',
-      ],
-      highlighted: false,
-    },
-  ];
-
   return (
-    <div className="w-full bg-[#111111] py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-black font-orbitron text-white mb-4">
-            Post a Job
-          </h2>
-          <p className="text-gray-400 text-lg">
-            Choose a plan to post your Web3 job opening and reach top talent
-          </p>
-        </div>
-
-        {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {plans.map((plan, index) => (
-            <div
-              key={index}
-              className={`relative rounded-2xl overflow-hidden transition-all duration-300 ${
-                plan.highlighted
-                  ? 'md:scale-105 border-2 border-[#00ff88] shadow-lg shadow-[#00ff88]/30 bg-gradient-to-br from-[#111111] to-[#1a1a1a]'
-                  : 'border border-[#00ff88]/30 bg-[#1a1a1a] hover:border-[#00ff88]/60'
-              }`}
-            >
-              {/* Popular Badge */}
-              {plan.highlighted && (
-                <div className="absolute top-0 right-0 bg-gradient-to-r from-[#00ff88] to-[#00cc6a] text-black px-4 py-1 text-xs font-bold font-orbitron">
-                  POPULAR
-                </div>
-              )}
-
-              <div className="p-8">
-                {/* Plan Name */}
-                <h3 className="text-2xl font-bold font-orbitron text-white mb-2">
-                  {plan.name}
-                </h3>
-                <p className="text-gray-400 text-sm mb-6">{plan.duration}</p>
-
-                {/* Price */}
-                <div className="mb-6">
-                  <span className="text-5xl font-black font-orbitron text-[#00ff88]">
-                    ${plan.price}
-                  </span>
-                  <span className="text-gray-400 ml-2">
-                    / {plan.duration === '30 days' ? 'month' : 'quarter'}
-                  </span>
-                </div>
-
-                {/* CTA Button */}
-                <button
-                  onClick={() => handleCheckout(plan.url)}
-                  className={`w-full py-3 px-4 rounded-lg font-bold font-orbitron mb-8 transition-all duration-300 ${
-                    plan.highlighted
-                      ? 'bg-gradient-to-r from-[#00ff88] to-[#00cc6a] text-black hover:shadow-lg hover:shadow-[#00ff88]/50'
-                      : 'bg-[#00ff88]/20 text-[#00ff88] border border-[#00ff88] hover:bg-[#00ff88]/30'
-                  }`}
-                >
-                  Get Started
-                </button>
-
-                {/* Features List */}
-                <div className="space-y-3">
-                  {plan.features.map((feature, featureIndex) => (
-                    <div key={featureIndex} className="flex items-start gap-3">
-                      <Check className="w-5 h-5 text-[#00ff88] flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-300 text-sm">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Footer Note */}
-        <div className="text-center mt-12">
-          <p className="text-gray-500 text-sm">
-            All plans include access to our applicant tracking system and candidate management tools.
-          </p>
-        </div>
+    <section className="post-job-section">
+      <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+        <h2 style={{ fontFamily: 'Orbitron, sans-serif', color: '#00ff88', fontSize: '2rem' }}>
+          Post a Job on Web3 Jobs
+        </h2>
+        <p style={{ color: '#aaa' }}>Reach thousands of Web3 developers and blockchain experts</p>
       </div>
-    </div>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '24px', maxWidth: '1100px', margin: '0 auto', padding: '0 20px' }}>
+        {plans.map((plan) => (
+          <div key={plan.key} style={{ background: plan.popular ? '#0a1a12' : '#111', border: `1px solid ${plan.popular ? '#00ff88' : '#222'}`, borderRadius: '16px', padding: '32px 24px', position: 'relative' }}>
+            {plan.popular && (
+              <span style={{ position: 'absolute', top: '-12px', left: '50%', transform: 'translateX(-50%)', background: '#00ff88', color: '#000', fontSize: '0.75rem', fontWeight: 700, padding: '4px 16px', borderRadius: '999px' }}>
+                Most Popular
+              </span>
+            )}
+            <h3 style={{ color: '#fff', marginBottom: '12px' }}>{plan.name}</h3>
+            <div style={{ marginBottom: '20px' }}>
+              <span style={{ fontSize: '2.2rem', fontWeight: 700, color: '#00ff88' }}>{plan.price}</span>
+              <span style={{ fontSize: '0.85rem', color: '#777', marginLeft: '4px' }}>/ {plan.duration}</span>
+            </div>
+            <ul style={{ listStyle: 'none', padding: 0, marginBottom: '24px' }}>
+              {plan.features.map((f) => (
+                <li key={f} style={{ color: '#bbb', fontSize: '0.9rem', padding: '4px 0' }}>✓ {f}</li>
+              ))}
+            </ul>
+            <button
+              onClick={() => window.open(plan.url, '_blank', 'noopener,noreferrer')}
+              style={{ width: '100%', padding: '12px', borderRadius: '8px', fontWeight: 600, fontSize: '0.95rem', cursor: 'pointer', border: 'none', background: plan.popular ? '#00ff88' : '#1a1a1a', color: plan.popular ? '#000' : '#fff' }}
+            >
+              Post Now — {plan.price}
+            </button>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }
+
+export default PostJobButton;

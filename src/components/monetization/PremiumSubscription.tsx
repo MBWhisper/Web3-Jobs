@@ -1,135 +1,54 @@
-import { Check } from 'lucide-react';
+const PREMIUM_URL = 'https://web3work.lemonsqueezy.com/checkout/buy/74268782-e64b-4206-a9ae-8a164b51b8b1';
 
-// Placeholder checkout URL - will be replaced with actual LemonSqueezy link
-const LEMON_PREMIUM_URL = 'LEMON_PREMIUM_URL';
+const freeFeatures    = ['Browse all job listings', 'Basic search & filters', 'Apply to unlimited jobs'];
+const premiumFeatures = ['⚡ Instant job alerts', '🔍 Advanced salary filters', '📊 Company insights', '🎯 AI job matches', '🔒 Full salary details', '📬 Direct recruiter messaging', '🚀 Priority application badge', '📅 Early access to listings'];
 
 export function PremiumSubscription() {
-  const handleCheckout = () => {
-    window.open(LEMON_PREMIUM_URL, '_blank', 'noopener,noreferrer');
-  };
-
-  const freeFeatures = [
-    'Browse all Web3 jobs',
-    'Basic search & filters',
-    'Apply to jobs',
-    'Save favorite jobs',
-    'Email notifications',
-    'Create job alerts',
-  ];
-
-  const premiumFeatures = [
-    'Instant job alerts',
-    'Advanced salary filters',
-    'Company insights & reviews',
-    'AI-powered job matches',
-    'Full salary transparency',
-    'Direct messaging with recruiters',
-    'Premium profile badge',
-    'Early access to new jobs',
-    'Salary negotiation guide',
-    'Career resources library',
-  ];
-
   return (
-    <div className="w-full bg-gradient-to-br from-[#0a0a0a] to-[#111111] py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black font-orbitron text-white mb-4">
-            Unlock Premium Features
-          </h2>
-          <p className="text-gray-400 text-lg">
-            Supercharge your Web3 job search with advanced tools and insights
-          </p>
-        </div>
-
-        {/* Comparison Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-          {/* Free Plan */}
-          <div className="rounded-2xl border border-[#00ff88]/20 bg-[#1a1a1a] p-8 md:p-10">
-            <div className="mb-8">
-              <h3 className="text-3xl font-bold font-orbitron text-white mb-2">
-                Free
-              </h3>
-              <p className="text-gray-400 text-sm">Forever free, no credit card required</p>
-            </div>
-
-            {/* Features */}
-            <div className="space-y-4 mb-8">
-              {freeFeatures.map((feature, index) => (
-                <div key={index} className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-[#00ff88]/20 flex items-center justify-center flex-shrink-0">
-                    <Check className="w-3 h-3 text-[#00ff88]" />
-                  </div>
-                  <span className="text-gray-300">{feature}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* Button */}
-            <button className="w-full py-3 px-4 rounded-lg font-bold font-orbitron text-gray-400 border border-gray-600 hover:border-[#00ff88] hover:text-[#00ff88] transition-all duration-300">
+    <section style={{ padding: '80px 20px', background: 'linear-gradient(180deg,#050505 0%,#0a1a0a 100%)' }}>
+      <div style={{ maxWidth: '860px', margin: '0 auto', textAlign: 'center' }}>
+        <span style={{ display: 'inline-block', background: 'rgba(0,255,136,0.15)', color: '#00ff88', border: '1px solid rgba(0,255,136,0.3)', borderRadius: '999px', padding: '6px 20px', fontSize: '0.85rem', fontWeight: 600, marginBottom: '16px' }}>
+          🌟 Go Premium
+        </span>
+        <h2 style={{ fontFamily: 'Orbitron, sans-serif', fontSize: '2rem', color: '#fff', marginBottom: '12px' }}>
+          Land Your Web3 Dream Job Faster
+        </h2>
+        <p style={{ color: '#888', marginBottom: '48px' }}>Join Web3 professionals using premium tools to get hired 3x faster</p>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+          {/* Free */}
+          <div style={{ background: '#0e0e0e', border: '1px solid #222', borderRadius: '18px', padding: '32px 24px', textAlign: 'left' }}>
+            <h3 style={{ color: '#fff', fontSize: '1.3rem', marginBottom: '8px' }}>Free</h3>
+            <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#00ff88', marginBottom: '24px' }}>$0 <span style={{ fontSize: '1rem', color: '#666' }}>/forever</span></div>
+            <ul style={{ listStyle: 'none', padding: 0, marginBottom: '28px' }}>
+              {freeFeatures.map(f => <li key={f} style={{ color: '#ccc', fontSize: '0.88rem', padding: '4px 0' }}>✓ {f}</li>)}
+              {premiumFeatures.map(f => <li key={f} style={{ color: '#444', fontSize: '0.88rem', padding: '4px 0', textDecoration: 'line-through' }}>✗ {f}</li>)}
+            </ul>
+            <button disabled style={{ width: '100%', padding: '12px', borderRadius: '8px', background: '#1a1a1a', color: '#555', border: '1px solid #333', cursor: 'not-allowed' }}>
               Current Plan
             </button>
           </div>
-
-          {/* Premium Plan */}
-          <div className="rounded-2xl border-2 border-[#00ff88] bg-gradient-to-br from-[#00ff88]/10 to-[#111111] p-8 md:p-10 relative overflow-hidden">
-            {/* Glow effect */}
-            <div className="absolute top-0 right-0 w-40 h-40 bg-[#00ff88]/20 rounded-full blur-3xl -z-10" />
-
-            {/* Premium badge */}
-            <div className="inline-block mb-6">
-              <span className="inline-block bg-gradient-to-r from-[#00ff88] to-[#00cc6a] text-black px-3 py-1 rounded-full text-xs font-bold font-orbitron">
-                ⭐ PREMIUM
-              </span>
-            </div>
-
-            <div className="mb-8">
-              <div className="flex items-baseline gap-2 mb-2">
-                <span className="text-4xl font-black font-orbitron text-[#00ff88]">
-                  $9
-                </span>
-                <span className="text-gray-400">/month</span>
-              </div>
-              <p className="text-gray-400 text-sm">
-                Everything in Free, plus premium features
-              </p>
-            </div>
-
-            {/* Features */}
-            <div className="space-y-4 mb-8">
-              {premiumFeatures.map((feature, index) => (
-                <div key={index} className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-[#00ff88] flex items-center justify-center flex-shrink-0">
-                    <Check className="w-3 h-3 text-black" />
-                  </div>
-                  <span className="text-gray-200">{feature}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* CTA Button */}
+          {/* Premium */}
+          <div style={{ background: '#0a1a12', border: '2px solid #00ff88', borderRadius: '18px', padding: '32px 24px', textAlign: 'left', position: 'relative' }}>
+            <span style={{ position: 'absolute', top: '-13px', left: '50%', transform: 'translateX(-50%)', background: '#00ff88', color: '#000', fontSize: '0.75rem', fontWeight: 700, padding: '4px 18px', borderRadius: '999px' }}>
+              Best Value
+            </span>
+            <h3 style={{ color: '#fff', fontSize: '1.3rem', marginBottom: '8px' }}>Premium</h3>
+            <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#00ff88', marginBottom: '24px' }}>$9 <span style={{ fontSize: '1rem', color: '#666' }}>/month</span></div>
+            <ul style={{ listStyle: 'none', padding: 0, marginBottom: '28px' }}>
+              {[...freeFeatures, ...premiumFeatures].map(f => <li key={f} style={{ color: '#ccc', fontSize: '0.88rem', padding: '4px 0' }}>✓ {f}</li>)}
+            </ul>
             <button
-              onClick={handleCheckout}
-              className="w-full py-3 px-4 rounded-lg font-bold font-orbitron bg-gradient-to-r from-[#00ff88] to-[#00cc6a] text-black hover:shadow-lg hover:shadow-[#00ff88]/50 transition-all duration-300 mb-4"
+              onClick={() => window.open(PREMIUM_URL, '_blank', 'noopener,noreferrer')}
+              style={{ width: '100%', padding: '14px', borderRadius: '8px', background: '#00ff88', color: '#000', fontWeight: 700, fontSize: '0.95rem', border: 'none', cursor: 'pointer' }}
             >
-              Upgrade to Premium
+              Upgrade to Premium — $9/mo
             </button>
-
-            {/* Footer note */}
-            <p className="text-gray-500 text-xs text-center">
-              Cancel anytime. No questions asked.
-            </p>
+            <p style={{ fontSize: '0.75rem', color: '#555', textAlign: 'center', marginTop: '10px' }}>Cancel anytime · No hidden fees</p>
           </div>
         </div>
-
-        {/* Additional note */}
-        <div className="text-center mt-12">
-          <p className="text-gray-500 text-sm">
-            All prices in USD. Premium subscription auto-renews monthly unless cancelled.
-          </p>
-        </div>
       </div>
-    </div>
+    </section>
   );
 }
+
+export default PremiumSubscription;
