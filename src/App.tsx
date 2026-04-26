@@ -18,6 +18,7 @@ const LearnPage        = lazy(() => import('@/pages/LearnPage').then(m => ({ def
 const PartnershipsPage = lazy(() => import('@/pages/PartnershipsPage').then(m => ({ default: m.PartnershipsPage })));
 const AgentsPage       = lazy(() => import('@/pages/AgentsPage').then(m => ({ default: m.AgentsPage })));
 const TopJobsPage      = lazy(() => import('@/pages/TopJobsPage').then(m => ({ default: m.TopJobsPage })));
+const PricingPage      = lazy(() => import('@/pages/PricingPage').then(m => ({ default: m.PricingPage })));
 
 // Minimal loading spinner shown while lazy pages load
 const PageLoader = () => (
@@ -73,6 +74,7 @@ function AppContent() {
               <Route path="/partnerships"  element={<PartnershipsPage />} />
               <Route path="/agents"        element={<AgentsPage />} />
               <Route path="/top-jobs"      element={<TopJobsPage />} />
+              <Route path="/pricing"       element={<PricingPage />} />
               <Route path="*"              element={<Navigate to="/" replace />} />
             </Routes>
           </Suspense>

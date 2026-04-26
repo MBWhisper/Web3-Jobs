@@ -152,7 +152,7 @@ export function NavBar() {
                 {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </Button>
 
-              <Button variant="outline" className="border-accent-pink/50 text-accent-pink hover:bg-accent-pink hover:text-white">
+              <Button variant="outline" className="border-accent-pink/50 text-accent-pink hover:bg-accent-pink hover:text-white" onClick={() => navigate('/pricing')}>
                 <Briefcase className="w-4 h-4 mr-2" />Post a Job
               </Button>
 
@@ -198,7 +198,7 @@ export function NavBar() {
                     {unreadCount > 0 && <span className="absolute -top-1 -right-1 w-4 h-4 bg-accent-pink text-white text-xs rounded-full">{unreadCount}</span>}
                   </Button>
                 </div>
-                <Button variant="outline" className="w-full border-accent-pink/50 text-accent-pink hover:bg-accent-pink hover:text-white">
+                <Button variant="outline" className="w-full border-accent-pink/50 text-accent-pink hover:bg-accent-pink hover:text-white" onClick={() => { navigate('/pricing'); setMobileMenuOpen(false); }}>
                   <Briefcase className="w-4 h-4 mr-2" />Post a Job
                 </Button>
                 <div className="grid grid-cols-2 gap-2">
