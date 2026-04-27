@@ -6,6 +6,10 @@ import { Badge } from '@/components/ui/badge';
 
 type PaymentMethod = 'card' | 'bank' | 'mobile' | 'paypal';
 
+const BINANCE_REF = import.meta.env.VITE_BINANCE_REF || 'GRO_28502_75HVN';
+const BYBIT_REF   = import.meta.env.VITE_BYBIT_REF   || '75E8EZ';
+const OKX_REF     = import.meta.env.VITE_OKX_REF     || '80651373';
+
 export function Monetization() {
   const [postJobOpen, setPostJobOpen] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('card');
@@ -80,6 +84,33 @@ export function Monetization() {
       name: 'PayPal', 
       icon: Wallet, 
       desc: 'Secure PayPal payments',
+    },
+  ];
+
+  const cryptoAffiliates = [
+    {
+      name: 'Binance',
+      logo: 'https://cdn.simpleicons.org/binance/F0B90B',
+      color: '#F0B90B',
+      commission: 'Up to 50% commission',
+      url: `https://accounts.binance.com/register?ref=${BINANCE_REF}`,
+      description: "World's #1 crypto exchange",
+    },
+    {
+      name: 'Bybit',
+      logo: 'https://cdn.simpleicons.org/bybit/FFCF43',
+      color: '#FFCF43',
+      commission: 'Up to 30% commission',
+      url: `https://www.bybit.com/invite?ref=${BYBIT_REF}`,
+      description: 'Advanced trading platform',
+    },
+    {
+      name: 'OKX',
+      logo: 'https://cdn.simpleicons.org/okx/ffffff',
+      color: '#00B1D2',
+      commission: 'Up to 20% commission',
+      url: `https://www.okx.com/join/${OKX_REF}`,
+      description: 'Web3 leader in your pocket',
     },
   ];
 
@@ -191,45 +222,77 @@ export function Monetization() {
                 <BadgeDollarSign className="w-5 h-5" />
                 <h3 className="text-lg font-semibold text-white">Affiliate Revenue</h3>
               </div>
-              <p className="text-gray-400 text-sm mb-4">Promote relevant tools/courses and earn commissions.</p>
+              <p className="text-gray-400 text-sm mb-4">Earn commissions from top crypto exchanges.</p>
               <div className="space-y-2 mb-6">
-                <a 
-                  className="block p-3 bg-black/30 rounded-lg text-accent-pink hover:underline hover:bg-white/5 transition-colors" 
-                  href="https://www.ledger.com/academy" 
-                  target="_blank" 
-                  rel="noreferrer"
-                >
-                  <div className="font-medium">Ledger Academy</div>
-                  <div className="text-xs text-gray-500">Crypto Education • Affiliate</div>
-                </a>
-                <a 
-                  className="block p-3 bg-black/30 rounded-lg text-accent-pink hover:underline hover:bg-white/5 transition-colors" 
-                  href="https://www.udemy.com/topic/blockchain/" 
-                  target="_blank" 
-                  rel="noreferrer"
-                >
-                  <div className="font-medium">Blockchain Courses</div>
-                  <div className="text-xs text-gray-500">Online Learning • 30% commission</div>
-                </a>
-                <a 
-                  className="block p-3 bg-black/30 rounded-lg text-accent-pink hover:underline hover:bg-white/5 transition-colors" 
-                  href="https://www.digitalocean.com/products/app-platform" 
-                  target="_blank" 
-                  rel="noreferrer"
-                >
-                  <div className="font-medium">Cloud Hosting</div>
-                  <div className="text-xs text-gray-500">Infrastructure • $100 bounty</div>
-                </a>
+                {cryptoAffiliates.map((affiliate) => (
+                  <a
+                    key={affiliate.name}
+                    className="flex items-center gap-3 p-3 bg-black/30 rounded-lg hover:bg-white/5 transition-colors"
+                    href={affiliate.url}
+                    target="_blank"
+                    rel="sponsored noopener noreferrer"
+                  >
+                    <img
+                      src={affiliate.logo}
+                      alt={affiliate.name}
+                      width={24}
+                      height={24}
+                      className="w-6 h-6 object-contain"
+                      loading="lazy"
+                    />
+                    <div className="flex-1">
+                      <div className="font-medium text-white text-sm">{affiliate.name}</div>
+                      <div className="text-xs text-gray-500">{affiliate.commission}</div>
+                    </div>
+                    <ArrowRight className="w-3 h-3 text-lime-400" />
+                  </a>
+                ))}
               </div>
               <Button 
                 className="w-full border-lime-500/50 text-lime-400 hover:bg-lime-500 hover:text-white"
                 variant="outline"
-                onClick={() => alert('Tip: add your affiliate IDs to these links before marketing campaigns.')}
+                onClick={() => alert('Affiliate links are live! Share them to start earning.')}
               >
-                Manage Links
+                View All Partners
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </div>
+          </div>
+        </div>
+
+        {/* Crypto Exchange Partners */}
+        <div className="mb-12">
+          <h3 className="text-center text-xl font-semibold text-white mb-6">Crypto Exchange Partners</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {cryptoAffiliates.map((affiliate) => (
+              <a
+                key={affiliate.name}
+                href={affiliate.url}
+                target="_blank"
+                rel="sponsored noopener noreferrer"
+                className="group flex items-center gap-4 p-5 rounded-2xl border border-white/10 bg-white/5 hover:border-[#00ff88]/40 hover:bg-white/10 transition-all duration-300"
+              >
+                <img
+                  src={affiliate.logo}
+                  alt={affiliate.name}
+                  width={40}
+                  height={40}
+                  className="w-10 h-10 object-contain"
+                  loading="lazy"
+                />
+                <div className="flex-1">
+                  <div className="font-bold text-white">{affiliate.name}</div>
+                  <div className="text-xs text-gray-400">{affiliate.description}</div>
+                  <span
+                    className="inline-block mt-1 text-xs font-semibold px-2 py-0.5 rounded-full"
+                    style={{ backgroundColor: `${affiliate.color}20`, color: affiliate.color }}
+                  >
+                    {affiliate.commission}
+                  </span>
+                </div>
+                <ArrowRight className="w-4 h-4 text-gray-500 group-hover:text-[#00ff88] transition-colors" />
+              </a>
+            ))}
           </div>
         </div>
 
@@ -319,7 +382,7 @@ export function Monetization() {
               </div>
             </div>
 
-            {/* Bank Transfer Details (shown when bank transfer selected) */}
+            {/* Bank Transfer Details */}
             {paymentMethod === 'bank' && (
               <div className="mb-6 p-4 rounded-xl bg-black/40 border border-gray-700">
                 <h4 className="text-white font-medium mb-3">Bank Transfer Details</h4>
