@@ -1,9 +1,9 @@
 import { ExternalLink } from 'lucide-react';
 
 // Placeholder affiliate URL variables - will be replaced with actual codes
-const BINANCE_REF = 'BINANCE_REF_CODE';
-const BYBIT_REF = 'BYBIT_REF_CODE';
-const OKX_REF = 'OKX_REF_CODE';
+const BINANCE_REF = import.meta.env.VITE_BINANCE_REF || 'GRO_28502_75HVN';
+const BYBIT_REF = import.meta.env.VITE_BYBIT_REF || '75E8EZ';
+const OKX_REF = import.meta.env.VITE_OKX_REF || '80651373';
 
 export function AffiliateSection() {
   const affiliateLinks = [
