@@ -3,6 +3,8 @@ name: Deploy to GitHub Pages (disabled - use static.yml)
 on:
   workflow_dispatch:
 
+permissions: {}
+
 jobs:
   notice:
     runs-on: ubuntu-latest
